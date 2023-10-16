@@ -1,17 +1,15 @@
 {
-  "functions": {
-    "api/hls_extractor.py": {
-      "runtime": "python3.9",
-      "includeFiles": ["hls_extractor.py", "requirements.txt"]
-    }
-  },
+  "version": 2,
+  "builds": [{ "src": "hls_extractor.py", "use": "@now/python" }],
   "routes": [
-    {
-      "handle": "filesystem"
-    },
+    { "handle": "filesystem" },
     {
       "src": "/api/extract_hls",
-      "dest": "/api/hls_extractor.py"
+      "dest": "/hls_extractor.py"
     }
-  ]
+  ],
+  "env": {
+    "FLASK_ENV": "production",
+    "FLASK_APP": "hls_extractor.py"
+  }
 }
