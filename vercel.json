@@ -1,12 +1,17 @@
 {
   "functions": {
-    "api": {
-      "handler": "hls_extractor.py.app",
-      "runtime": "python3.9"
+    "api/hls_extractor.py": {
+      "runtime": "python3.9",
+      "includeFiles": ["hls_extractor.py", "requirements.txt"]
     }
   },
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/api" }
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/api/extract_hls",
+      "dest": "/api/hls_extractor.py"
+    }
   ]
 }
